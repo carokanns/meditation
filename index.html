@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meditation – Start (med bilder)</title>
+  <link rel="stylesheet" href="stars.css">
+  <style>
+    :root{ --bg:#0b1220; --card:#0f1830; --accent:#67e8f9; --accent2:#a78bfa; --text:#eaf2ff; --muted:#9fb3c8; --ring:#253357; }
+    html,body{height:100%}
+    body{margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; color:var(--text);
+      background: radial-gradient(1200px 600px at 80% -10%, #1d2a48 0%, #0b1220 40%, #060a14 80%);
+    }
+    .stars{position:fixed; inset:0; z-index:0; pointer-events:none}
+    .star{position:absolute; width:2px; height:2px; background:#fff; border-radius:50%; opacity:.7; box-shadow:0 0 6px 2px #ffffff22; animation:twinkle 5s ease-in-out infinite}
+    @keyframes twinkle{0%,100%{opacity:.2; transform:translateY(0)} 50%{opacity:1; transform:translateY(-.6px)}}
+
+    .wrap{position:relative; z-index:1; min-height:100vh; display:flex; flex-direction:column}
+
+    header{padding:3rem clamp(1rem,3vw,2rem) 1rem}
+    .title{display:flex; align-items:center; gap:.7rem; font-weight:900; letter-spacing:.4px}
+    .title .spark{width:14px; height:14px; border-radius:50%; background:radial-gradient(circle at 30% 30%, #fff, #fff0 55%), var(--accent2); box-shadow:0 0 14px 4px #a78bfa55}
+    h1{font-size:clamp(2.1rem,4vw,3rem); margin:.2rem 0 0}
+    .subtitle{color:var(--muted); margin-top:.4rem}
+
+    main{padding:0 clamp(1rem,3vw,2rem) 2rem}
+    .hero{display:grid; grid-template-columns:repeat(12,1fr); gap:1rem; align-items:start}
+    .lead{grid-column:span 12}
+    @media(min-width:900px){ .lead{grid-column:span 6} }
+
+    .gallery{grid-column:span 12; display:grid; gap:1rem; grid-template-columns:repeat(2,minmax(0,1fr));}
+    .art{position:relative; border:1px solid var(--ring); background:linear-gradient(180deg,#0f1830 0%, #0c1428 100%); border-radius:16px; aspect-ratio:16/9; display:grid; place-items:center}
+    .art svg{width:96%; height:auto}
+    .art figcaption{position:absolute; left:10px; top:10px; font-size:.9rem; border:1px solid #2a416a; background:rgba(15,24,48,.85); padding:.25rem .55rem; border-radius:8px; color:#cfe8ff}
+
+    .btnrow{margin-top:1.2rem; display:flex; flex-wrap:wrap; gap:.6rem}
+    .btn{border:1px solid var(--ring); background:#0f1830; color:#eaf2ff; text-decoration:none; padding:.7rem 1rem; border-radius:12px}
+    .btn:hover{border-color:#2e3f69; box-shadow:0 0 0 2px #a78bfa22 inset}
+
+    .pager{display:flex; justify-content:space-between; gap:1rem; margin:2.2rem 0 1.6rem}
+    .pager a{border:1px solid var(--ring); padding:.6rem .9rem; border-radius:10px; text-decoration:none; color:#eaf2ff; background:#0f1830}
+    .pager a:hover{border-color:#2e3f69; box-shadow:0 0 0 2px #a78bfa22 inset}
+
+    footer{padding:0 2rem 2rem; color:#8aa5bf; font-size:.95rem}
+  </style>
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+  <div class="wrap">
+    <header>
+      <div class="title"><span class="spark"></span><h1>Meditation</h1></div>
+      <div class="subtitle">Hur mediterar man</div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="lead">
+          <p>Låt oss tillsammans göra världens enklaste meditation!</p>
+          <div class="btnrow">
+            <a class="btn" href="#" id="startBtn">Starta presentation ▶</a>
+          </div>
+        </div>
+
+        <div class="gallery">
+          <!-- Bild 1: Buddhistmunk i meditation -->
+          <figure class="art">
+            <figcaption>Buddhistmunk – meditation</figcaption>
+            <img src="images/munk.png" alt="Buddhistmunk i meditation" style="width: 96%; height: auto;">
+          </figure>
+
+          <!-- Bild 2: Modern svensk på stol i meditation -->
+          <figure class="art">
+            <figcaption>Modern svensk – stolmeditation</figcaption>
+            <img src="images/kvinna.png" alt="Modern svensk på stol i meditation" style="width: 96%; height: auto;">
+          </figure>
+        </div>
+      </section>
+
+      <nav class="pager">
+        <a id="prevBtn" class="prev" href="#">◀ Föregående</a>
+        <a id="nextBtn" class="next" href="#">Nästa ▶</a>
+      </nav>
+    </main>
+
+    <footer>
+      Tips: Spara denna som <code>index.html</code> och uppdatera listan <code>SLIDES</code> så den matchar din ordning.
+    </footer>
+  </div>
+
+  <!-- Fallback-stjärnor om stars.js inte ritar -->
+  <script>
+    (function(){
+      const root=document.querySelector('.stars');
+      if(!root || root.childElementCount>0) return;
+      const COUNT=160; for(let i=0;i<COUNT;i++){ const s=document.createElement('span'); s.className='star';
+        s.style.left=(Math.random()*100)+'vw'; s.style.top=(Math.random()*100)+'vh';
+        s.style.animationDuration=(3+Math.random()*5)+'s'; s.style.transform='scale('+(0.3+Math.random()*1.1)+')'; root.appendChild(s); }
+    })();
+  </script>
+  <script src="stars.js" defer></script>
+
+  <!-- Automatisk bläddring – gör listan identisk på alla sidor -->
+  <script>
+    const SLIDES = [
+      "index.html",                   // Start (denna fil)
+      "tm-mindfulness-nsdr.html",     // Jämförelse-sidan
+      "mindfulness-interaktiv.html",  // Interaktiv mindfulness
+      "lankar.html"                   // Länksidan
+    ];
+
+    const me = location.pathname.split("/").pop() || "index.html";
+    const i  = Math.max(0, SLIDES.indexOf(me));
+    const prev = SLIDES[(i - 1 + SLIDES.length) % SLIDES.length];
+    const next = SLIDES[(i + 1) % SLIDES.length];
+
+    const prevEl = document.getElementById("prevBtn");
+    const nextEl = document.getElementById("nextBtn");
+    if (prevEl) prevEl.href = prev;
+    if (nextEl) nextEl.href = next;
+
+    const start = document.getElementById("startBtn");
+    if(start) start.href = SLIDES[(i + 1) % SLIDES.length];
+
+    addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") location.href = prev;
+      if (e.key === "ArrowRight") location.href = next;
+    });
+  </script>
+</body>
+</html>

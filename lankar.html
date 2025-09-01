@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Länkar – TM • Mindfulness • NSDR • Gestalthälsa</title>
+  <style>
+    :root{
+      --bg:#0b1220; --card:#0f1830; --accent:#67e8f9; --accent2:#a78bfa; --text:#eaf2ff; --muted:#9fb3c8; --ring:#253357;
+    }
+    html,body{height:100%;}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      color:var(--text); background: radial-gradient(1200px 600px at 80% -10%, #1d2a48 0%, #0b1220 40%, #060a14 80%);
+    }
+    .wrap{min-height:100vh; display:flex; flex-direction:column;}
+    header{padding:2rem clamp(1rem,3vw,2rem) 0.5rem}
+    .title{font-size:clamp(1.8rem,2.6vw,2.4rem); font-weight:800; letter-spacing:.3px; display:flex; align-items:center; gap:.6rem}
+    .title .spark{width:12px; height:12px; border-radius:50%; background:radial-gradient(circle at 30% 30%, #fff, #fff0 55%), var(--accent2); box-shadow:0 0 14px 4px #a78bfa55}
+    .subtitle{color:var(--muted); margin-top:.25rem}
+
+    .controls{display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:1rem}
+    .chip{border:1px solid var(--ring); background:#0f1530; color:#cfe3ff; padding:.4rem .7rem; border-radius:999px; font-size:.95rem; cursor:pointer}
+    .chip.active{border-color:var(--accent); box-shadow:0 0 0 2px #67e8f922 inset}
+
+    main{padding:0 clamp(1rem,3vw,2rem) 2.5rem}
+    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:1rem}
+    .section{grid-column:span 12}
+    @media(min-width:900px){.section{grid-column:span 6}}
+
+    .section h2{margin:1.2rem 0 .6rem; font-size:1.15rem}
+    .section p{margin:0 0 .6rem; color:var(--muted)}
+
+    .links{display:grid; grid-template-columns:repeat(1,minmax(0,1fr)); gap:.8rem}
+    @media(min-width:700px){.links{grid-template-columns:repeat(2,minmax(0,1fr));}}
+    @media(min-width:1100px){.links{grid-template-columns:repeat(3,minmax(0,1fr));}}
+
+    a.card{display:flex; align-items:center; gap:.7rem; text-decoration:none; background:linear-gradient(180deg,#101a36 0%, #0d162e 100%);
+      border:1px solid var(--ring); border-radius:14px; padding:.9rem; transition:transform .15s ease, border-color .2s ease, box-shadow .2s ease; position:relative; overflow:visible}
+    a.card:hover{transform:translateY(-1px); border-color:#2e3f69; box-shadow:0 6px 18px #00000040, 0 0 0 2px #a78bfa22 inset}
+    .icon{flex:0 0 auto; width:34px; height:34px; display:grid; place-items:center; border-radius:9px; background:#1a243d}
+    .icon svg{width:20px; height:20px}
+    .label{line-height:1.15}
+    .label .name{color:#f2f6ff; font-weight:800; font-size:1rem}
+    .label .meta{color:#a5bed8; font-size:.85rem}
+    .icon{flex:0 0 auto; width:36px; height:36px; display:grid; place-items:center; border-radius:9px; background:#1a243d; position:relative; overflow:visible; margin-top:12px}
+.icon svg{width:20px; height:20px}
+.lang-badge{position:absolute; left:10px; top:8px; font-size:.7rem; padding:.1rem .42rem; border-radius:6px; border:1px solid #2a416a; background:#0f1530; color:#cfe8ff; line-height:1.05; box-shadow:0 2px 6px #0006; pointer-events:none; z-index:2}
+.lang-badge.se{border-color:#1f3f2a; color:#ccf5d8; background:#0f2418}
+.lang-badge.en{border-color:#164b63; color:#cfefff; background:#0d2230}
+
+    footer{padding:1rem 2rem; color:#8aa5bf; font-size:.9rem}
+  .stars{position:fixed; inset:0; z-index:0; pointer-events:none}
+.wrap{position:relative; z-index:1}
+
+/* Pager */
+.pager{display:flex; justify-content:space-between; gap:1rem; margin:2rem 0 1rem}
+.pager a{border:1px solid var(--ring); padding:.6rem .9rem; border-radius:10px; text-decoration:none; color:#eaf2ff; background:#0f1830}
+.pager a:hover{border-color:#2e3f69; box-shadow:0 0 0 2px #a78bfa22 inset}
+
+</style>
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+  <div class="wrap">
+    <header>
+      <div class="title"><span class="spark"></span> Länkar till TM, Mindfulness, NSDR & Gestalthälsa</div>
+      <div class="subtitle">Klicka korten – allt öppnas i ny flik. Du kan filtrera på språk eller typ.</div>
+      <div class="controls" role="group" aria-label="Filter">
+        <button class="chip" data-filter="lang" data-value="se">Svenska</button>
+        <button class="chip" data-filter="lang" data-value="en">Engelska</button>
+        <button class="chip" data-filter="type" data-value="youtube">YouTube</button>
+        <button class="chip" data-filter="type" data-value="web">Webb</button>
+        <button class="chip" id="clear">Rensa filter</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="grid">
+        <!-- TM -->
+        <section class="section" data-section="tm">
+          <h2>Transcendental Meditation (TM)</h2>
+          <p>Introduktioner och officiella kanaler.</p>
+          <div class="links">
+            <a class="card" href="https://www.youtube.com/watch?v=utpqeiSYRUw" target="_blank" rel="noopener" data-lang="en" data-type="youtube">
+              <span class="icon" aria-hidden="true">"+ytSVG()+"</span>
+              <span class="label">
+                <span class="name">What is the TM technique?</span>
+                <span class="meta">Kort introduktion (video)</span>
+              </span>
+            </a>
+            <a class="card" href="https://www.youtube.com/@transcendentalmeditationuk" target="_blank" rel="noopener" data-lang="en" data-type="youtube">
+              <span class="icon" aria-hidden="true">"+ytSVG()+"</span>
+              <span class="label">
+                <span class="name">TM UK – officiell kanal</span>
+                <span class="meta">Intervjuer, Q&A, insikter</span>
+              </span>
+            </a>
+            <a class="card" href="https://www.youtube.com/user/DavidLynchFoundation" target="_blank" rel="noopener" data-lang="en" data-type="youtube">
+              <span class="icon" aria-hidden="true">"+ytSVG()+"</span>
+              <span class="label">
+                <span class="name">David Lynch Foundation</span>
+                <span class="meta">TM i skola, vård & veteranprogram</span>
+              </span>
+            </a>
+          </div>
+        </section>
+
+        <!-- Mindfulness -->
+        <section class="section" data-section="mindfulness">
+          <h2>Mindfulness</h2>
+          <p>Forskning, guidade övningar och lärarledda pass.</p>
+          <div class="links">
+            <a class="card" href="https://www.youtube.com/oxfordmindfulness" target="_blank" rel="noopener" data-lang="en" data-type="youtube">
+              <span class="icon" aria-hidden="true">"+ytSVG()+"</span>
+              <span class="label">
+                <span class="name">Oxford Mindfulness</span>
+                <span class="meta">Föreläsningar & praktik (kanal)</span>
+              </span>
+            </a>
+            <a class="card" href="https://www.youtube.com/playlist?list=PLw0lBK4PlwF5z7LomqhlVZ7EfCgVk462I" target="_blank" rel="noopener" data-lang="en" data-type="youtube">
+              <span class="icon" aria-hidden="true">"+ytSVG()+"</span>
+              <span class="label">
+                <span class="name">UCLA Mindful – guidade meditationer</span>
+                <span class="meta">Spellista (andning, kroppsskanning m.m.)</span>
+              </span>
+            </a>
+            <a class="card" href="https://www.youtube.com/watch?v=_DTmGtznab4" target="_blank" rel="noopener" data-lang="en" data-type="youtube">
+              <span class="icon" aria-hidden="true">"+ytSVG()+"</span>
+              <span class="label">
+                <span class="name">Jon Kabat‑Zinn – Body Scan (30 min)</span>
+                <span class="meta">Klassisk MBSR‑övning</span>
+              </span>
+            </a>
+          </div>
+        </section>
+
+        <!-- NSDR / Huberman -->
+        <section class="section" data-section="nsdr">
+          <h2>NSDR (Andrew Huberman)</h2>
+          <p>Guidade NSDR‑protokoll och fördjupning.</p>
+          <div class="links">
+            <a class="card" href="https://www.youtube.com/playlist?list=PLPNW_gerXa4MFy52YhdZJYhOk11KdfG9G" target="_blank" rel="noopener" data-lang="en" data-type="youtube">
+              <span class="icon" aria-hidden="true">"+ytSVG()+"</span>
+              <span class="label">
+                <span class="name">Huberman Lab – NSDR (spellista)</span>
+                <span class="meta">10 & 20 min guidade sessioner</span>
+              </span>
+            </a>
+            <a class="card" href="https://www.hubermanlab.com/nsdr" target="_blank" rel="noopener" data-lang="en" data-type="web">
+              <span class="icon" aria-hidden="true">"+globeSVG()+"</span>
+              <span class="label">
+                <span class="name">Huberman Lab – NSDR sida</span>
+                <span class="meta">Översikt & länkar till alla ljud</span>
+              </span>
+            </a>
+          </div>
+        </section>
+
+        <!-- Gestalthälsa (SE) -->
+        <section class="section" data-section="gestalthalsa">
+          <h2>Gestalthälsa (svenska)</h2>
+          <p>Svensk YouTube‑kanal med hypnos/meditation & psykoedukation.</p>
+          <div class="links">
+            <a class="card" href="https://www.youtube.com/@psykoanalytikern" target="_blank" rel="noopener" data-lang="se" data-type="youtube">
+              <span class="icon" aria-hidden="true">"+ytSVG()+"</span>
+              <span class="label">
+                <span class="name">Gestalthälsa – kanal</span>
+                <span class="meta">Hypnos, sömn, psykologi (SE)</span>
+              </span>
+            </a>
+            <a class="card" href="https://www.youtube.com/watch?v=ki9r8Yaqgf4" target="_blank" rel="noopener" data-lang="se" data-type="youtube">
+              <span class="icon" aria-hidden="true">"+ytSVG()+"</span>
+              <span class="label">
+                <span class="name">Hypnos för sömn – lång version</span>
+                <span class="meta">Populär inspelning (SE)</span>
+              </span>
+            </a>
+          </div>
+        </section>
+
+        <!-- Generellt -->
+        <section class="section" data-section="general">
+          <h2>Meditation i allmänhet</h2>
+          <p>Övergripande kanaler för guidade meditationer.</p>
+          <div class="links">
+            <a class="card" href="https://www.youtube.com/user/tarabrach" target="_blank" rel="noopener" data-lang="en" data-type="youtube">
+              <span class="icon" aria-hidden="true">"+ytSVG()+"</span>
+              <span class="label">
+                <span class="name">Tara Brach – kanal</span>
+                <span class="meta">Fördjupande guidade meditationer</span>
+              </span>
+            </a>
+            <a class="card" href="https://www.youtube.com/channel/UC3JhfsgFPLSLNEROQCdj-GQ" target="_blank" rel="noopener" data-lang="en" data-type="youtube">
+              <span class="icon" aria-hidden="true">"+ytSVG()+"</span>
+              <span class="label">
+                <span class="name">Headspace – kanal</span>
+                <span class="meta">Kortare pass & serier</span>
+              </span>
+            </a>
+          </div>
+        </section>
+      </div>
+    <nav class="pager">
+        <a id="prevBtn" class="prev" href="#">◀ Föregående</a>
+        <a id="nextBtn" class="next" href="#">Nästa ▶</a>
+      </nav>
+    </main>
+
+    <footer>
+      <div class="tip">Tips: Lägg denna sida som genväg i din presentation. Alla kort öppnas i ny flik.</div>
+    </footer>
+  </div>
+
+  <!-- Ingen extern JS krävs för att innehållet ska synas. Filtren nedan är valfria. -->
+  <script>
+    function ytSVG(){return `
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#ff0033" d="M23.5 6.2s-.2-1.6-.8-2.3c-.8-.9-1.7-.9-2.1-1C17.5 2.5 12 2.5 12 2.5h0s-5.5 0-8.6.4c-.4.1-1.3.1-2.1 1-.6.7-.8 2.3-.8 2.3S0 8.1 0 10v1.9c0 1.9.5 3.8.5 3.8s.2 1.6.8 2.3c.8.9 1.8.9 2.3 1 1.7.2 7.2.4 8.4.4h.1c1.2 0 6.7-.2 8.4-.4.5-.1 1.5-.1 2.3-1 .6-.7.8-2.3.8-2.3s.5-1.9.5-3.8V10c0-1.9-.5-3.8-.5-3.8Z"/><path fill="#fff" d="M9.75 8.25v7.5L16.5 12l-6.75-3.75Z"/></svg>
+    `}
+    function globeSVG(){return `
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#7dd3fc" d="M12 2a10 10 0 100 20 10 10 0 000-20Zm7.9 9h-3.1c-.1-2.1-.6-4-1.4-5.7A8.01 8.01 0 0119.9 11Zm-5.1 0H9.2c.1-2 .6-3.9 1.3-5.6.5-.2 1-.4 1.5-.4s1 .1 1.5.4c.7 1.7 1.2 3.6 1.3 5.6ZM8.2 5.3C7.4 7 6.9 8.9 6.8 11H3.9a8.01 8.01 0 014.3-5.7ZM3.9 13h2.9c.1 2.1.6 4 1.4 5.7A8.01 8.01 0 013.9 13Zm5.3 0h5.6c-.1 2-.6 3.9-1.3 5.6-.5.2-1 .4-1.5.4s-1-.1-1.5-.4c-.7-1.7-1.2-3.6-1.3-5.6Zm6.9 5.4c.8-1.7 1.3-3.6 1.4-5.7h3.1a8.01 8.01 0 01-4.5 5.7Z"/></svg>
+    `}
+
+    // Rendera de inline-ikoner vi lade som textnoder
+    document.querySelectorAll('.icon').forEach(icon=>{
+      const card = icon.closest('.card');
+      icon.innerHTML = card?.dataset.type === 'web' ? globeSVG() : ytSVG();
+      // Språklabel i kortets hörn (uppe till vänster)
+      if(card && card.dataset.lang){
+        const tag=document.createElement('span');
+        const lang=card.dataset.lang.toLowerCase();
+        tag.className='lang-badge '+lang;
+        tag.textContent=lang.toUpperCase();
+        card.appendChild(tag);
+      }
+    });
+
+    // Enkelt filter (valfritt)
+    const state = { lang: new Set(), type: new Set() };
+    const chips = document.querySelectorAll('.chip');
+    const cards = document.querySelectorAll('a.card');
+    function applyFilters(){
+      cards.forEach(c=>{
+        const okLang = state.lang.size===0 || state.lang.has(c.dataset.lang);
+        const okType = state.type.size===0 || state.type.has(c.dataset.type);
+        c.style.display = (okLang && okType) ? '' : 'none';
+      })
+    }
+    chips.forEach(ch=>{
+      ch.addEventListener('click', ()=>{
+        if(ch.id==='clear'){ state.lang.clear(); state.type.clear(); chips.forEach(x=>x.classList.remove('active')); applyFilters(); return; }
+        ch.classList.toggle('active');
+        const set = state[ch.dataset.filter];
+        if(ch.classList.contains('active')) set.add(ch.dataset.value); else set.delete(ch.dataset.value);
+        applyFilters();
+      })
+    });
+  </script>
+  <script src="stars.js" defer></script>
+  <script>
+    // Gemensam SLIDES-lista (identisk på alla sidor)
+    const SLIDES = [
+      "index.html",                   // Start
+      "tm-mindfulness-nsdr.html",     // Jämförelse-sidan
+      "mindfulness-interaktiv.html",  // Interaktiv mindfulness
+      "lankar.html"                   // Länksidan (denna)
+    ];
+    const me  = location.pathname.split("/").pop() || "index.html";
+    const i   = Math.max(0, SLIDES.indexOf(me));
+    const prev = SLIDES[(i - 1 + SLIDES.length) % SLIDES.length];
+    const next = SLIDES[(i + 1) % SLIDES.length];
+    const prevEl = document.getElementById("prevBtn");
+    const nextEl = document.getElementById("nextBtn");
+    if (prevEl) prevEl.href = prev;
+    if (nextEl) nextEl.href = next;
+    addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft")  location.href = prev;
+      if (e.key === "ArrowRight") location.href = next;
+    });
+  </script>
+</body>
+</html>

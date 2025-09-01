@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>TM → Mindfulness → NSDR</title>
+  <link rel="stylesheet" href="stars.css">
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f172a;
+      --muted:#94a3b8;
+      --border:#1f2a44;
+      --border-strong:#273552;
+      --tm:#8b5cf6;
+      --tm-rgb:139,92,246;
+      --mf:#10b981;
+      --mf-rgb:16,185,129;
+      --nsdr:#60a5fa;
+      --nsdr-rgb:96,165,250;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;
+      background:#0b1220; color:#e5e7eb; padding:24px; overflow:hidden;
+      display:flex; align-items:center; justify-content:center;
+    }
+
+    /* Krav: minsta CSS för stjärnhimmel + lagerordning */
+    .stars{ position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .wrap{ position:relative; z-index:1; }
+
+    .slide{ width:min(1100px,95vw);
+      background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));
+      border:1px solid var(--border); border-radius:20px; padding:28px 28px 12px;
+      box-shadow:0 10px 40px rgba(0,0,0,.35); backdrop-filter: blur(6px);
+    }
+    header{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:16px}
+    h1{font-size:38px; margin:0; letter-spacing:.3px}
+    .subtitle{color:var(--muted); font-size:22px; font-weight:600}
+    .legend{display:flex; gap:8px; flex-wrap:wrap}
+    .pill{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; font-weight:600; font-size:16px; border:1px solid var(--border);} 
+    .pill.tm{background:rgba(var(--tm-rgb),.12); color:#e9d5ff}
+    .pill.mf{background:rgba(var(--mf-rgb),.12); color:#d1fae5}
+    .pill.nsdr{background:rgba(var(--nsdr-rgb),.12); color:#dbeafe}
+
+    .table-wrap{border:1px solid var(--border-strong); border-radius:14px; overflow:hidden}
+    table{width:100%; border-collapse:collapse; font-size:20px; line-height:1.6; background:transparent}
+    thead th{background:#0e1729; text-align:left; padding:16px 18px; font-weight:800; font-size:22px; border-right:1px solid var(--border-strong)}
+    thead th:last-child{border-right:none}
+    tbody td{padding:18px; border-right:1px solid var(--border); font-size:19px}
+    tbody td:last-child{border-right:none}
+    tbody tr{border-top:1px solid var(--border)}
+    tbody tr:first-child{border-top:1px solid var(--border-strong)}
+    tbody tr:hover{background:rgba(255,255,255,0.03)}
+
+    tbody tr.tm-row{background:linear-gradient(90deg, rgba(var(--tm-rgb),.14) 0%, rgba(0,0,0,0) 22%)}
+    tbody tr.mf-row{background:linear-gradient(90deg, rgba(var(--mf-rgb),.14) 0%, rgba(0,0,0,0) 22%)}
+    tbody tr.nsdr-row{background:linear-gradient(90deg, rgba(var(--nsdr-rgb),.14) 0%, rgba(0,0,0,0) 22%)}
+    tbody tr.tm-row td:first-child{border-left:6px solid var(--tm)}
+    tbody tr.mf-row td:first-child{border-left:6px solid var(--mf)}
+    tbody tr.nsdr-row td:first-child{border-left:6px solid var(--nsdr)}
+
+    .tag{font-weight:700}
+    .tag.tm{color:var(--tm)}
+    .tag.mf{color:var(--mf)}
+    .tag.nsdr{color:var(--nsdr)}
+    .emoji{font-size:22px; opacity:.9; margin-right:6px}
+
+    /* Pager (föregående/nästa) */
+    .pager{display:flex; justify-content:space-between; gap:1rem; margin:1.2rem 0 .2rem}
+    .pager a{border:1px solid #253357; padding:.6rem .9rem; border-radius:10px; text-decoration:none; color:#eaf2ff; background:#0f1830}
+    .pager a:hover{border-color:#2e3f69; box-shadow:0 0 0 2px #a78bfa22 inset}
+
+    footer{display:flex; justify-content:space-between; align-items:center; margin-top:12px; color:#94a3b8; font-size:16px}
+  </style>
+</head>
+<body>
+  <!-- Stjärnhimmel -->
+  <div class="stars" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="slide">
+      <header>
+        <div>
+          <h1>TM → Mindfulness → NSDR</h1>
+          <div class="subtitle">Översikt av metod, effekter och användning</div>
+        </div>
+        <div class="legend">
+          <div class="pill tm">🔔 TM</div>
+          <div class="pill mf">🧘 Mindfulness</div>
+          <div class="pill nsdr">🌙 NSDR</div>
+        </div>
+      </header>
+
+      <div class="table-wrap">
+        <table aria-label="Jämförelse TM, Mindfulness, NSDR">
+          <thead>
+            <tr>
+              <th>Metod</th>
+              <th>Hur det går till</th>
+              <th>Syfte / effekt</th>
+              <th>Vetenskapligt stöd</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="tm-row">
+              <td><span class="emoji">🔔</span><span class="tag tm">Transcendental Meditation (TM)</span></td>
+              <td>Tyst upprepning av personligt mantra, <strong>20 min × 2/dag</strong>, sittande med slutna ögon.</td>
+              <td>Djup vila, minskad stress, <em>kreativitet</em> och mental klarhet.</td>
+              <td>Många studier sedan 1970-talet; positiva resultat men viss metodkritik.</td>
+            </tr>
+            <tr class="mf-row">
+              <td><span class="emoji">🧘</span><span class="tag mf">Mindfulness (MBSR m.fl.)</span></td>
+              <td>Icke-dömande uppmärksamhet på andning/kropp/tankar; sittande eller i vardagliga aktiviteter.</td>
+              <td>Stressreduktion, ökad närvaro, minskad ångest/depression, bättre smärthantering.</td>
+              <td><strong>Starkt</strong> stöd och brett kliniskt använd; tusentals studier.</td>
+            </tr>
+            <tr class="nsdr-row">
+              <td><span class="emoji">🌙</span><span class="tag nsdr">NSDR (Non-Sleep Deep Rest)</span></td>
+              <td>Guidad djupavslappning (modern NSDR behöver inte vara liggande): kroppsskanning, andning, visualisering, <strong>10–30 min</strong>.</td>
+              <td>Snabb återhämtning, förbättrad sömn och fokus; "power-nap" utan att sova.</td>
+              <td>Växande intresse; få direkta studier ännu, populariserad av Huberman.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pager -->
+      <nav class="pager">
+        <a id="prevBtn" class="prev" href="#">◀ Föregående</a>
+        <a id="nextBtn" class="next" href="#">Nästa ▶</a>
+      </nav>
+
+      <footer>
+        <div>Tips: prova 1 vecka/teknik och jämför upplevd vila & fokus.</div>
+        <div>Färger: TM (lila), Mindfulness (grön), NSDR (blå)</div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Stjärnlogik och pager-logik -->
+  <script src="stars.js" defer></script>
+  <script>
+    // SLIDES-lista måste vara identisk på alla sidor
+    const SLIDES = [
+      "index.html",
+      "tm-mindfulness-nsdr.html",
+      "mindfulness-interaktiv.html",
+      "lankar.html"
+    ];
+
+    const me  = location.pathname.split("/").pop() || "index.html";
+    const i   = Math.max(0, SLIDES.indexOf(me));
+    const prev = SLIDES[(i - 1 + SLIDES.length) % SLIDES.length];
+    const next = SLIDES[(i + 1) % SLIDES.length];
+
+    const prevEl = document.getElementById("prevBtn");
+    const nextEl = document.getElementById("nextBtn");
+    if (prevEl) prevEl.href = prev;
+    if (nextEl) nextEl.href = next;
+
+    // Piltangenter ← →
+    addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft")  location.href = prev;
+      if (e.key === "ArrowRight") location.href = next;
+    });
+  </script>
+</body>
+</html>
