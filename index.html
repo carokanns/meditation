@@ -38,6 +38,12 @@
     .art-note{margin:0 .2rem; color:#cfe8ff; background:rgba(15,24,48,.65); border:1px solid #2a416a; padding:.45rem .6rem; border-radius:10px; font-size:1rem}
     .art-note.center{ text-align:center }
     .is-hidden{display:none}
+    
+    /* CTA under bilderna */
+    .cta-section{margin:2.4rem 0 0}
+    .cta{display:flex; justify-content:center}
+    .btn.cta-btn{display:inline-block; white-space:normal; text-align:center; max-width:28ch}
+    .cta-text{margin:.8rem auto 0; max-width:50ch}
 
     .btnrow{margin-top:1.2rem; display:flex; flex-wrap:wrap; gap:.6rem}
     .btn{border:1px solid var(--ring); background:#0f1830; color:#eaf2ff; text-decoration:none; padding:.7rem 1rem; border-radius:12px}
@@ -79,6 +85,16 @@
             <p class="art-note center">Inte alls!</p>
             <p class="art-note center">Använd vilka kläder du vill. Sitt bekvämt, helst i en lugn miljö!</p>
           </div>
+        </div>
+      </section>
+
+      <!-- Ny sektion: Centrerad knapp (visas med bild 2) -->
+      <section class="cta-section is-hidden" id="ctaSection">
+        <div class="cta">
+          <a id="breathBtn" class="btn cta-btn" href="#" role="button" tabindex="0">Låt oss gör världens enklaste meditation tillsamman!</a>
+        </div>
+        <div id="breathBlock" class="art-note center cta-text is-hidden">
+          Enkel andningsövning: Andas in genom näsan i 4 sekunder, håll andan i 2 sekunder, andas ut lugnt i 6 sekunder. Upprepa 5–8 gånger.
         </div>
       </section>
 
@@ -136,8 +152,12 @@
     (function(){
       const monk = document.getElementById('monkFigure');
       const modern = document.getElementById('modernBlock');
+      const cta = document.getElementById('ctaSection');
       if(!monk || !modern) return;
-      const reveal = () => modern.classList.remove('is-hidden');
+      const reveal = () => {
+        modern.classList.remove('is-hidden');
+        if (cta) cta.classList.remove('is-hidden');
+      };
       monk.addEventListener('click', reveal);
       monk.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -145,6 +165,22 @@
           reveal();
         }
       });
+      const breathBtn = document.getElementById('breathBtn');
+      const breathBlock = document.getElementById('breathBlock');
+      if (breathBtn && breathBlock) {
+        const showBreath = (e) => {
+          if (e) e.preventDefault();
+          breathBlock.classList.remove('is-hidden');
+          breathBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        };
+        breathBtn.addEventListener('click', showBreath);
+        breathBtn.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            showBreath();
+          }
+        });
+      }
     })();
   </script>
 </body>
