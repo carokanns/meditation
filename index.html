@@ -36,16 +36,25 @@
     .gallery{grid-column:span 12; display:grid; gap:1rem; grid-template-columns:repeat(2,minmax(0,1fr));}
     @media (max-width: 800px){ .gallery{ grid-template-columns: 1fr } }
     .artcol{display:flex; flex-direction:column; gap:.6rem}
-    .art{position:relative; border:1px solid var(--ring); background:linear-gradient(180deg,#0f1830 0%, #0c1428 100%); border-radius:16px; aspect-ratio:16/7.2; display:grid; place-items:center}
+    .art{position:relative; border:1px solid var(--ring); background:linear-gradient(180deg,#0f1830 0%, #0c1428 100%); border-radius:16px; display:grid; place-items:center; overflow:visible}
+    
     .art svg{width:96%; height:auto}
     .art img{width:96%; height:auto}
     .art figcaption{position:absolute; left:10px; top:10px; font-size:.9rem; border:1px solid #2a416a; background:rgba(15,24,48,.85); padding:.25rem .55rem; border-radius:8px; color:#cfe8ff}
     .art.clickable{cursor:pointer}
+    .art.clickable:hover{border-color:#2e3f69; box-shadow:0 0 0 2px #a78bfa22 inset}
     .art.clickable:focus-visible{outline:2px solid var(--accent2); outline-offset:4px; box-shadow:0 0 0 4px #a78bfa22}
     .art-note{margin:0 .2rem; color:#cfe8ff; background:rgba(15,24,48,.65); border:1px solid #2a416a; padding:.45rem .6rem; border-radius:10px; font-size:1rem; line-height:1.5}
     .art-note.center{ text-align:center }
     .is-hidden{display:none}
-    
+
+    /* Klick-hint på munken */
+    .click-hint{position:absolute; bottom:10px; left:50%; transform:translateX(-50%); pointer-events:none; color:#fff; font-weight:600; font-size:.9rem; padding:.25rem .6rem; border-radius:999px; border:1px solid #2a416a; background:linear-gradient(180deg, var(--accent2), #7c5df0); box-shadow:0 0 12px 2px #a78bfa44; opacity:.9; animation:hintPulse 1.8s ease-in-out infinite}
+    @keyframes hintPulse{0%{transform:translateX(-50%) scale(1); opacity:.85}50%{transform:translateX(-50%) scale(1.08); opacity:1}100%{transform:translateX(-50%) scale(1); opacity:.85}}
+    @media (min-width: 1024px){
+      /* Desktop: gör bilderna upp till ~50% större utan överlapp */
+      .art img{ width:auto; height:auto; max-width:95%; max-height:75vh }
+    }
     /* CTA under bilderna */
     .cta-section{margin:2.4rem 0 0}
     .cta{display:flex; justify-content:center}
@@ -66,6 +75,7 @@
 
     footer{padding:0 2rem 2rem; color:#8aa5bf; font-size:.95rem}
     @media (prefers-reduced-motion: reduce){ .star{ animation: none !important } }
+    
   </style>
 </head>
 <body>
@@ -81,18 +91,19 @@
         <div class="gallery">
           <!-- Kolumn 1: Munken + text under -->
           <div class="artcol">
-            <figure class="art clickable" id="monkFigure" role="button" tabindex="0" aria-label="Visa nästa bild" aria-controls="modernBlock" aria-expanded="false">
-              <img src="images/munk.png" alt="Buddhistmunk i meditation" fetchpriority="high">
-            </figure>
             <p class="art-note">Måste man vara en munk och sitta med benen i kors?</p>
+            <figure class="art clickable" id="monkFigure" role="button" tabindex="0" aria-label="Visa nästa bild" aria-controls="modernBlock" aria-expanded="false">
+              <img src="images/munk.png" alt="Buddhistmunk i meditation" width="1024" height="1536" fetchpriority="high">
+              <div class="click-hint" id="clickHint">Klicka för mer</div>
+            </figure>
           </div>
 
           <!-- Kolumn 2: Modern svensk på stol i meditation (döljs först) -->
           <div class="artcol is-hidden" id="modernBlock">
-            <figure class="art" id="modernFigure">
-              <img src="images/kvinna.png" alt="Modern svensk på stol i meditation" loading="lazy" decoding="async">
-            </figure>
             <p class="art-note center">Inte alls! Modern västanpassad meditation</p>
+            <figure class="art" id="modernFigure">
+              <img src="images/kvinna.png" alt="Modern svensk på stol i meditation" width="1024" height="1536" loading="lazy" decoding="async">
+            </figure>
             <p class="art-note center">Använd vilka kläder du vill. Sitt bekvämt, helst i en lugn miljö!</p>
           </div>
         </div>
@@ -169,11 +180,13 @@
       const monk = document.getElementById('monkFigure');
       const modern = document.getElementById('modernBlock');
       const cta = document.getElementById('ctaSection');
+      const hint = document.getElementById('clickHint');
       if(!monk || !modern) return;
       const reveal = () => {
         modern.classList.remove('is-hidden');
         if (cta) cta.classList.remove('is-hidden');
         monk.setAttribute('aria-expanded', 'true');
+        if (hint) hint.classList.add('is-hidden');
       };
       monk.addEventListener('click', reveal);
       monk.addEventListener('keydown', (e) => {
