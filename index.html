@@ -24,21 +24,26 @@
     h1{font-size:clamp(2.1rem,4vw,3rem); margin:.2rem 0 0}
     .subtitle{color:var(--muted); margin-top:.4rem; font-size:1.5rem}
 
-    main{padding:0 clamp(1rem,3vw,2rem) 2rem}
+    main{padding:0 clamp(1rem,3vw,2rem) 2rem; display:flex; flex-direction:column; flex:1}
     .hero{display:grid; grid-template-columns:repeat(12,1fr); gap:1rem; align-items:start}
     .lead{grid-column:span 12}
     @media(min-width:900px){ .lead{grid-column:span 6} }
 
     .gallery{grid-column:span 12; display:grid; gap:1rem; grid-template-columns:repeat(2,minmax(0,1fr));}
+    .artcol{display:flex; flex-direction:column; gap:.6rem}
     .art{position:relative; border:1px solid var(--ring); background:linear-gradient(180deg,#0f1830 0%, #0c1428 100%); border-radius:16px; aspect-ratio:16/9; display:grid; place-items:center}
     .art svg{width:96%; height:auto}
     .art figcaption{position:absolute; left:10px; top:10px; font-size:.9rem; border:1px solid #2a416a; background:rgba(15,24,48,.85); padding:.25rem .55rem; border-radius:8px; color:#cfe8ff}
+    .art.clickable{cursor:pointer}
+    .art-note{margin:0 .2rem; color:#cfe8ff; background:rgba(15,24,48,.65); border:1px solid #2a416a; padding:.45rem .6rem; border-radius:10px; font-size:1rem}
+    .art-note.center{ text-align:center }
+    .is-hidden{display:none}
 
     .btnrow{margin-top:1.2rem; display:flex; flex-wrap:wrap; gap:.6rem}
     .btn{border:1px solid var(--ring); background:#0f1830; color:#eaf2ff; text-decoration:none; padding:.7rem 1rem; border-radius:12px}
     .btn:hover{border-color:#2e3f69; box-shadow:0 0 0 2px #a78bfa22 inset}
 
-    .pager{display:flex; justify-content:space-between; gap:1rem; margin:2.2rem 0 1.6rem}
+    .pager{display:flex; justify-content:space-between; gap:1rem; margin:auto 0 1.6rem}
     .pager a{border:1px solid var(--ring); padding:.6rem .9rem; border-radius:10px; text-decoration:none; color:#eaf2ff; background:#0f1830}
     .pager a:hover{border-color:#2e3f69; box-shadow:0 0 0 2px #a78bfa22 inset}
 
@@ -50,27 +55,30 @@
   <div class="wrap">
     <header>
       <div class="title"><span class="spark"></span><h1>Meditation</h1></div>
-      <div class="subtitle">Hur mediterar man</div>
+      <div class="subtitle">Hur mediterar man?</div>
     </header>
 
     <main>
       <section class="hero">
-        <div class="lead">
-          <p>Låt oss tillsammans göra världens enklaste meditation!</p>
-        </div>
-
         <div class="gallery">
-          <!-- Bild 1: Buddhistmunk i meditation -->
-          <figure class="art">
-            <figcaption>Buddhistmunk – meditation</figcaption>
-            <img src="images/munk.png" alt="Buddhistmunk i meditation" style="width: 96%; height: auto;">
-          </figure>
+          <!-- Kolumn 1: Munken + text under -->
+          <div class="artcol">
+            <figure class="art clickable" id="monkFigure" role="button" tabindex="0" aria-label="Visa nästa bild">
+              <figcaption>Buddhistmunk – meditation</figcaption>
+              <img src="images/munk.png" alt="Buddhistmunk i meditation" style="width: 96%; height: auto;">
+            </figure>
+            <p class="art-note">Måste man vara en munk och sitta med benen i kors?</p>
+          </div>
 
-          <!-- Bild 2: Modern svensk på stol i meditation -->
-          <figure class="art">
-            <figcaption>Modern svensk – stolmeditation</figcaption>
-            <img src="images/kvinna.png" alt="Modern svensk på stol i meditation" style="width: 96%; height: auto;">
-          </figure>
+          <!-- Kolumn 2: Modern svensk på stol i meditation (döljs först) -->
+          <div class="artcol is-hidden" id="modernBlock">
+            <figure class="art" id="modernFigure">
+              <figcaption>Modern svensk – stolmeditation</figcaption>
+              <img src="images/kvinna.png" alt="Modern svensk på stol i meditation" loading="lazy" decoding="async" style="width: 96%; height: auto;">
+            </figure>
+            <p class="art-note center">Inte alls!</p>
+            <p class="art-note center">Använd vilka kläder du vill. Sitt bekvämt, helst i en lugn miljö!</p>
+          </div>
         </div>
       </section>
 
@@ -80,9 +88,7 @@
       </nav>
     </main>
 
-    <footer>
-      Använd vilka kläder du vill. Sitt bekvämt helst lugn miljö!
-    </footer>
+    
   </div>
 
   <!-- Fallback-stjärnor om stars.js inte ritar -->
@@ -123,6 +129,23 @@
       if (e.key === "ArrowLeft") location.href = prev;
       if (e.key === "ArrowRight") location.href = next;
     });
+  </script>
+  
+  <!-- Klick för att visa andra bilden -->
+  <script>
+    (function(){
+      const monk = document.getElementById('monkFigure');
+      const modern = document.getElementById('modernBlock');
+      if(!monk || !modern) return;
+      const reveal = () => modern.classList.remove('is-hidden');
+      monk.addEventListener('click', reveal);
+      monk.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          reveal();
+        }
+      });
+    })();
   </script>
 </body>
 </html>
