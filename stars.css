@@ -20,6 +20,20 @@
   animation: twinkle 2s infinite ease-in-out;
 }
 
+/* Tillfällig förstoring/ljusglimt på enstaka stjärnor */
+.star.flare {
+  /* behåll twinkle och lägg till en engångsflare */
+  animation: twinkle 2s infinite ease-in-out, flare 1.8s ease-in-out 1;
+  box-shadow: 0 0 6px 2px #ffffff55;
+}
+
+@keyframes flare {
+  0% { transform: scale(1); box-shadow: 0 0 6px 2px #ffffff33; opacity: 0.6; }
+  40% { transform: scale(3.2); box-shadow: 0 0 24px 9px #ffffff99; opacity: 1; }
+  60% { transform: scale(3.6); box-shadow: 0 0 28px 12px #ffffffbb; opacity: 1; }
+  100% { transform: scale(1); box-shadow: 0 0 6px 2px #ffffff33; opacity: 0.8; }
+}
+
 @keyframes twinkle {
   0%, 100% { opacity: 0.2; }
   50% { opacity: 1; }

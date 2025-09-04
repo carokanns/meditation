@@ -36,7 +36,7 @@
     .gallery{grid-column:span 12; display:grid; gap:1rem; grid-template-columns:repeat(2,minmax(0,1fr));}
     @media (max-width: 800px){ .gallery{ grid-template-columns: 1fr } }
     .artcol{display:flex; flex-direction:column; gap:.6rem}
-    .art{position:relative; border:1px solid var(--ring); background:linear-gradient(180deg,#0f1830 0%, #0c1428 100%); border-radius:16px; aspect-ratio:16/9; display:grid; place-items:center}
+    .art{position:relative; border:1px solid var(--ring); background:linear-gradient(180deg,#0f1830 0%, #0c1428 100%); border-radius:16px; aspect-ratio:16/7.2; display:grid; place-items:center}
     .art svg{width:96%; height:auto}
     .art img{width:96%; height:auto}
     .art figcaption{position:absolute; left:10px; top:10px; font-size:.9rem; border:1px solid #2a416a; background:rgba(15,24,48,.85); padding:.25rem .55rem; border-radius:8px; color:#cfe8ff}
@@ -82,7 +82,6 @@
           <!-- Kolumn 1: Munken + text under -->
           <div class="artcol">
             <figure class="art clickable" id="monkFigure" role="button" tabindex="0" aria-label="Visa nästa bild" aria-controls="modernBlock" aria-expanded="false">
-              <figcaption>Buddhistmunk – meditation</figcaption>
               <img src="images/munk.png" alt="Buddhistmunk i meditation" fetchpriority="high">
             </figure>
             <p class="art-note">Måste man vara en munk och sitta med benen i kors?</p>
@@ -91,10 +90,9 @@
           <!-- Kolumn 2: Modern svensk på stol i meditation (döljs först) -->
           <div class="artcol is-hidden" id="modernBlock">
             <figure class="art" id="modernFigure">
-              <figcaption>Modern svensk – stolmeditation</figcaption>
               <img src="images/kvinna.png" alt="Modern svensk på stol i meditation" loading="lazy" decoding="async">
             </figure>
-            <p class="art-note center">Inte alls!</p>
+            <p class="art-note center">Inte alls! Modern västanpassad meditation</p>
             <p class="art-note center">Använd vilka kläder du vill. Sitt bekvämt, helst i en lugn miljö!</p>
           </div>
         </div>
