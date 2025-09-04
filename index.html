@@ -42,8 +42,12 @@
     /* CTA under bilderna */
     .cta-section{margin:2.4rem 0 0}
     .cta{display:flex; justify-content:center}
+    .cta-heading{font-size:clamp(1.4rem,3.2vw,2rem); font-weight:800; text-align:center; margin:.2rem 0 0}
     .btn.cta-btn{display:inline-block; white-space:normal; text-align:center; max-width:28ch}
     .cta-text{margin:.8rem auto 0; max-width:50ch}
+    .breath-list{ text-align:left; display:inline-block; margin:.4rem auto 0; padding-left:1.2rem }
+    .breath-list li{ margin:.12rem 0 }
+    .breath-note{ text-align:left; display:inline-block; margin:1rem auto 0; font-size:1.1rem }
 
     .btnrow{margin-top:1.2rem; display:flex; flex-wrap:wrap; gap:.6rem}
     .btn{border:1px solid var(--ring); background:#0f1830; color:#eaf2ff; text-decoration:none; padding:.7rem 1rem; border-radius:12px}
@@ -91,10 +95,16 @@
       <!-- Ny sektion: Två textrutor (visas med bild 2) -->
       <section class="cta-section is-hidden" id="ctaSection">
         <div class="cta">
-          <p class="art-note center cta-text">Låt oss gör världens enklaste meditation tillsamman!</p>
+          <h2 class="cta-heading">Låt oss gör världens enklaste meditation tillsamman!</h2>
         </div>
         <div id="breathBlock" class="art-note center cta-text">
-          Andas in genom näsan i 4 sekunder, håll andan i 2 sekunder, andas ut lugnt i 6 sekunder. Gör detta 5-10 minuter om dagen. Det gör underverk med blodtrycket!
+          <ul class="breath-list">
+            <li>Andas in genom näsan i 4 sekunder</li>
+            <li>Håll andan i 2 sekunder</li>
+            <li>Andas ut lugnt i 6 sekunder genom munnen</li>
+            <li>Gör detta 5-10 minuter om dagen</li>
+          </ul>
+          <div class="breath-note">Detta gör underverk med blodtrycket!</div>
         </div>
       </section>
 
