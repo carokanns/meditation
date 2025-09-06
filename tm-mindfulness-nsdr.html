@@ -2,6 +2,7 @@
 <html lang="sv">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TM → Mindfulness → NSDR</title>
   <link rel="stylesheet" href="stars.css">
   <style>
@@ -22,15 +23,15 @@
     html,body{height:100%}
     body{
       margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;
-      background:#0b1220; color:#e5e7eb; padding:24px; overflow:hidden;
-      display:flex; align-items:center; justify-content:center;
+      background:#0b1220; color:#e5e7eb; padding:24px 16px; overflow:auto;
+      display:block; min-height:100vh;
     }
 
     /* Krav: minsta CSS för stjärnhimmel + lagerordning */
     .stars{ position:fixed; inset:0; z-index:0; pointer-events:none; }
     .wrap{ position:relative; z-index:1; }
 
-    .slide{ width:min(1100px,95vw);
+    .slide{ width:min(1100px,95vw); margin:24px auto 12px;
       background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));
       border:1px solid var(--border); border-radius:20px; padding:28px 28px 12px;
       box-shadow:0 10px 40px rgba(0,0,0,.35); backdrop-filter: blur(6px);
@@ -44,7 +45,7 @@
     .pill.mf{background:rgba(var(--mf-rgb),.12); color:#d1fae5}
     .pill.nsdr{background:rgba(var(--nsdr-rgb),.12); color:#dbeafe}
 
-    .table-wrap{border:1px solid var(--border-strong); border-radius:14px; overflow:hidden}
+    .table-wrap{border:1px solid var(--border-strong); border-radius:14px; overflow:hidden; margin-bottom:18px}
     table{width:100%; border-collapse:collapse; font-size:20px; line-height:1.6; background:transparent}
     thead th{background:#0e1729; text-align:left; padding:16px 18px; font-weight:800; font-size:22px; border-right:1px solid var(--border-strong)}
     thead th:last-child{border-right:none}
@@ -68,9 +69,21 @@
     .emoji{font-size:22px; opacity:.9; margin-right:6px}
 
     /* Pager (föregående/nästa) */
-    .pager{display:flex; justify-content:space-between; gap:1rem; margin:1.2rem 0 .2rem}
+    .pager{display:flex; justify-content:space-between; gap:1rem; margin:1.2rem 0 .2rem; position:sticky; bottom:8px}
     .pager a{border:1px solid #253357; padding:.6rem .9rem; border-radius:10px; text-decoration:none; color:#eaf2ff; background:#0f1830}
     .pager a:hover{border-color:#2e3f69; box-shadow:0 0 0 2px #a78bfa22 inset}
+
+    /* Praktik-kort */
+    .cards{display:grid; grid-template-columns:repeat(1,minmax(0,1fr)); gap:14px; margin-top:18px}
+    @media(min-width:840px){.cards{grid-template-columns:repeat(3,minmax(0,1fr));}}
+    .card{background:linear-gradient(180deg,#0f1830 0%, #0d162e 100%); border:1px solid var(--border-strong); border-radius:14px; padding:16px}
+    .card h3{margin:.2rem 0 .4rem; font-size:20px}
+    .card .meta{color:#94a3b8; font-size:14px; margin-bottom:.6rem}
+    .card ul{margin:.2rem 0 .6rem .9rem; padding:0}
+    .card li{margin:.2rem 0}
+    .btns{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.6rem}
+    .btn{display:inline-block; text-decoration:none; border:1px solid #253357; background:#0f1830; color:#eaf2ff; padding:.45rem .7rem; border-radius:10px; font-size:.95rem}
+    .btn:hover{border-color:#2e3f69; box-shadow:0 0 0 2px #a78bfa22 inset}
 
     footer{display:flex; justify-content:space-between; align-items:center; margin-top:12px; color:#94a3b8; font-size:16px}
   </style>
@@ -84,12 +97,7 @@
       <header>
         <div>
           <h1>TM → Mindfulness → NSDR</h1>
-          <div class="subtitle">Översikt av metod, effekter och användning</div>
-        </div>
-        <div class="legend">
-          <div class="pill tm">🔔 TM</div>
-          <div class="pill mf">🧘 Mindfulness</div>
-          <div class="pill nsdr">🌙 NSDR</div>
+          <div class="subtitle">Tre metoder jag praktiserat</div>
         </div>
       </header>
 
@@ -126,6 +134,68 @@
         </table>
       </div>
 
+      <!-- Praktiskt: kort för varje metod -->
+      <section aria-label="Praktiskt – så gör du och mina erfarenheter">
+        <div class="subtitle" style="margin:14px 0 6px">Praktiskt: så gör du + mina noteringar</div>
+        <div class="meta" style="margin:4px 0 10px; color:#93a4bd">Obs: Lyssna på kroppen. Vid ångest eller annat obehag – öppna ögonen och avbryt och prova en kortare session eller annan metod. Vid medicinska besvär: rådgör med vården.</div>
+        <div class="cards">
+          <article class="card" aria-labelledby="tm-card-title">
+            <h3 id="tm-card-title">🔔 TM – praktik</h3>
+            <div class="meta">Struktur: 20 min morgon + 20 min eftermiddag</div>
+            <ul>
+              <li>Sitt bekvämt, slut ögonen, låt mantrat vara lätt.</li>
+              <li>Om tankar kommer: notera, återvänd mjukt.</li>
+              <li>Efteråt: vila 1–2 min innan du öppnar ögonen.</li>
+            </ul>
+            <div class="meta">Mina notiser (redigera efter behov):</div>
+            <ul>
+              <li>Djup fysisk vila, ofta tydlig stressnedgång efter 10–15 min.</li>
+              <li>Jämnare fokus över dagen när jag gör två pass.</li>
+            </ul>
+            <div class="btns">
+              <a class="btn" href="lankar.html?section=tm" rel="noopener">Länkar</a>
+            </div>
+          </article>
+
+          <article class="card" aria-labelledby="mf-card-title">
+            <h3 id="mf-card-title">🧘 Mindfulness – praktik</h3>
+            <div class="meta">Struktur: 10–30 min sittande eller i vardagen</div>
+            <ul>
+              <li>Fokusera på andning/kropp. Låt allt vara – utan att döma.</li>
+              <li>När du distraheras: säg mentalt “tanke/ljud/känsla” och återvänd.</li>
+              <li>Vardagsövning: ät, diska eller gå med full närvaro.</li>
+            </ul>
+            <div class="meta">Mina notiser (redigera efter behov):</div>
+            <ul>
+              <li>Ger stabil grundlugnet, märkbart på sömn och tålamod.</li>
+              <li>Lätt att få in som korta mikropauser under dagen.</li>
+            </ul>
+            <div class="meta">Övning på nästa sida</div>
+            <div class="btns">
+              <a class="btn" href="lankar.html?section=mindfulness" rel="noopener">Länkar</a>
+            </div>
+          </article>
+
+          <article class="card" aria-labelledby="nsdr-card-title">
+            <h3 id="nsdr-card-title">🌙 NSDR – praktik</h3>
+            <div class="meta">Struktur: 10–30 min guidad djupvila (liggande eller sittande)</div>
+            <ul>
+              <li>Starta guidning. Följ kroppsskanning och långsam andning.</li>
+              <li>Låt kroppen bli tung. Om du somnar – ok, fortsätt nästa gång.</li>
+              <li>Bäst efter lunch eller sent på dagen för återhämtning.</li>
+            </ul>
+            <div class="meta">Mina notiser (redigera efter behov):</div>
+            <ul>
+              <li>Snabb “reset” av hjärnan – piggare fokus efter 10–20 min.</li>
+              <li>Hjälper vid sömnighet på eftermiddagen utan kaffe.</li>
+            </ul>
+            <div class="btns">
+              <a class="btn" href="lankar.html?section=nsdr" rel="noopener">Länkar</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <!-- Pager -->
       <nav class="pager">
         <a id="prevBtn" class="prev" href="#">◀ Föregående</a>
@@ -134,7 +204,6 @@
 
       <footer>
         <div>Tips: prova 1 vecka/teknik och jämför upplevd vila & fokus.</div>
-        <div>Färger: TM (lila), Mindfulness (grön), NSDR (blå)</div>
       </footer>
     </div>
   </div>
