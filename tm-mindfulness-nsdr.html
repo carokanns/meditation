@@ -70,8 +70,13 @@
 
     /* Pager (föregående/nästa) */
     .pager{display:flex; justify-content:space-between; gap:1rem; margin:1.2rem 0 .2rem; position:sticky; bottom:8px}
-    .pager a{border:1px solid #253357; padding:.6rem .9rem; border-radius:10px; text-decoration:none; color:#eaf2ff; background:#0f1830}
-    .pager a:hover{border-color:#2e3f69; box-shadow:0 0 0 2px #a78bfa22 inset}
+    .pager a{width:96px; height:96px; padding:0; border:none; border-radius:999px; text-decoration:none; color:#eaf2ff; background:transparent; display:grid; place-items:center}
+    .pager a svg{width:60px; height:60px}
+    .pager a .ring{opacity:.28; stroke-width:1}
+    .pager a .arrow{stroke-width:1.6}
+    .pager a:hover .ring{opacity:.5}
+    .pager a:hover .arrow{stroke-width:2.8; stroke: var(--accent2, #a6d0ff)}
+    .pager a:focus-visible{outline:2px solid #2e3f69; outline-offset:4px; border-radius:50%}
 
     /* Praktik-kort */
     .cards{display:grid; grid-template-columns:repeat(1,minmax(0,1fr)); gap:14px; margin-top:18px}
@@ -198,8 +203,20 @@
 
       <!-- Pager -->
       <nav class="pager">
-        <a id="prevBtn" class="prev" href="#">◀ Föregående</a>
-        <a id="nextBtn" class="next" href="#">Nästa ▶</a>
+        <a id="prevBtn" class="prev" href="#" aria-label="Föregående" title="Föregående">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle class="ring" cx="12" cy="12" r="9" fill="none" stroke="currentColor"/>
+            <path class="arrow" d="M12 9 L8 12 L12 15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            <line class="arrow" x1="8" y1="12" x2="18" y2="12" stroke="currentColor" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a id="nextBtn" class="next" href="#" aria-label="Nästa" title="Nästa">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle class="ring" cx="12" cy="12" r="9" fill="none" stroke="currentColor"/>
+            <path class="arrow" d="M12 9 L18 12 L12 15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            <line class="arrow" x1="6" y1="12" x2="18" y2="12" stroke="currentColor" stroke-linecap="round"/>
+          </svg>
+        </a>
       </nav>
 
       <footer>

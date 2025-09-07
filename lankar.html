@@ -54,9 +54,14 @@
 .wrap{position:relative; z-index:1}
 
 /* Pager */
-.pager{display:flex; justify-content:space-between; gap:1rem; margin:2rem 0 1rem}
-.pager a{border:1px solid var(--ring); padding:.6rem .9rem; border-radius:10px; text-decoration:none; color:#eaf2ff; background:#0f1830}
-.pager a:hover{border-color:#2e3f69; box-shadow:0 0 0 2px #a78bfa22 inset}
+ .pager{display:flex; justify-content:space-between; gap:1rem; margin:2rem 0 1rem}
+ .pager a{width:96px; height:96px; padding:0; border:none; border-radius:999px; text-decoration:none; color:#eaf2ff; background:transparent; display:grid; place-items:center}
+ .pager a svg{width:60px; height:60px}
+ .pager a .ring{opacity:.28; stroke-width:1}
+ .pager a .arrow{stroke-width:1.6}
+ .pager a:hover .ring{opacity:.5}
+ .pager a:hover .arrow{stroke-width:2.8; stroke: var(--accent2, #a6d0ff)}
+ .pager a:focus-visible{outline:2px solid var(--accent2); outline-offset:4px; border-radius:50%}
 
 </style>
 </head>
@@ -82,6 +87,13 @@
           <h2>Transcendental Meditation (TM)</h2>
           <p>Introduktioner och officiella kanaler.</p>
           <div class="links">
+            <a class="card" href="https://transcendental-meditation.se/" target="_blank" rel="noopener" data-lang="se" data-type="web">
+              <span class="icon" aria-hidden="true">"+globeSVG()+"</span>
+              <span class="label">
+                <span class="name">TM Sverige – officiell webbplats</span>
+                <span class="meta">Info och lärarkontakt (SE)</span>
+              </span>
+            </a>
             <a class="card" href="https://www.youtube.com/watch?v=utpqeiSYRUw" target="_blank" rel="noopener" data-lang="en" data-type="youtube">
               <span class="icon" aria-hidden="true">"+ytSVG()+"</span>
               <span class="label">
@@ -202,8 +214,20 @@
         </section>
       </div>
     <nav class="pager">
-        <a id="prevBtn" class="prev" href="#">◀ Föregående</a>
-        <a id="nextBtn" class="next" href="#">Nästa ▶</a>
+        <a id="prevBtn" class="prev" href="#" aria-label="Föregående" title="Föregående">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle class="ring" cx="12" cy="12" r="9" fill="none" stroke="currentColor"/>
+            <path class="arrow" d="M12 9 L8 12 L12 15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            <line class="arrow" x1="8" y1="12" x2="18" y2="12" stroke="currentColor" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a id="nextBtn" class="next" href="#" aria-label="Nästa" title="Nästa">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle class="ring" cx="12" cy="12" r="9" fill="none" stroke="currentColor"/>
+            <path class="arrow" d="M12 9 L18 12 L12 15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            <line class="arrow" x1="6" y1="12" x2="18" y2="12" stroke="currentColor" stroke-linecap="round"/>
+          </svg>
+        </a>
       </nav>
     </main>
 
