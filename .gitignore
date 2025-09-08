@@ -22,3 +22,5 @@ yarn-error.log*
 *.swp
 *.swo
 
+# Local dev server artifacts
+.server.*
