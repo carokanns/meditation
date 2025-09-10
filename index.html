@@ -65,6 +65,11 @@
     .breath-list li{ margin:.12rem 0 }
     .breath-note{ text-align:left; display:inline-block; margin:1rem auto 0; font-size:1.1rem }
 
+    /* Gör länkar i CTA-texten tydliga mot natthimlen */
+    .cta-text a{ color:#fde047; text-decoration:underline; text-underline-offset:2px }
+    .cta-text a:hover{ color:#facc15; text-decoration-thickness:2px }
+    .cta-text a:visited{ color:#fdd835 }
+
     .btnrow{margin-top:1.2rem; display:flex; flex-wrap:wrap; gap:.6rem}
     .btn{border:1px solid var(--ring); background:#0f1830; color:#eaf2ff; text-decoration:none; padding:.7rem 1rem; border-radius:12px}
     .btn:hover{border-color:#2e3f69; box-shadow:0 0 0 2px #a78bfa22 inset}
@@ -131,7 +136,7 @@
           <div class="breath-note" style="margin-top:0">Kan lindra huvudvärk eller spänningar.</div>
         </div>
         <div class="breath-note cta-text" style="display:block; margin:1.2rem auto 0;">
-          Kommer från en urgammal indisk teknik: Bhramari Pranayama.<br>
+          Kommer från en urgammal indisk teknik: <a href="https://www.yoga.se/lasrummet/bhramari-humlan/" target="_blank" rel="noopener">Bhramari Pranayama</a>.<br>
           Bhramari syftar på humlans ljud.
         </div>
       </section>
